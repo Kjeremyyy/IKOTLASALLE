@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        .admin-form {
+            display: none;
+        }
+       
+        body {
+            /*background: linear-gradient(to right, #8e44ad, #3498db);*/
+            background-image: url(images/dlsud.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column; /* Updated to column direction for centering */
+        }
+        body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(45, 45, 45, 0.5); /* Adjust the tint color and opacity as needed */
+    z-index: -1;
+}
+
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px; /* Added margin-bottom for spacing */
+           
+        }
+        
+
+        form {
+        position: relative;
+        justify-content: center;
+        background: transparent;
+        background-position: center;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        border-radius: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8); /* White shadow color */
+        padding: 20px;
+        max-width: none;
+        width: auto;
+        margin: auto;
+        z-index: 1;
+    }
+
+    form::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(187, 184, 184, 0.8); /* Adjust the overlay opacity as needed */
+        border-radius: 30px;
+        z-index: -1;
+    }
+
+
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        input {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            background-color: rgb(224, 251, 242);
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: rgb(4, 88, 83);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button.adminlogin {
+            background-color: #3498db;
+        }
+
+        #adminForm {
+            display: none;
+        }
+
+        .registration-buttons {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="userForm" action="Usercreate.php" method="POST">
+        <h1>USER REGISTRATION</h1>
+        <label for="USERID">USERID:</label>
+        <input type="text" id="USERID" name="USERID"><br><br>
+        <label for="NAME">FULLNAME:</label>
+        <input type="text" id="NAME" name="NAME"><br><br>
+        <label for="USERNAME">USERNAME:</label>
+        <input type="text" id="USERNAME" name="USERNAME"><br><br>
+        <label for="PASSWORD">PASSWORD:</label>
+        <input type="password" id="PASSWORD" name="PASSWORD"><br><br>
+        <label for="RETYPEPASSWORD">RETYPEPASSWORD:</label>
+        <input type="password" id="RETYPEPASSWORD" name="RETYPEPASSWORD"><br><br>
+        <button class="submit" name="submit" id="submit" type="submit" >SUBMIT</button><br><br> 
+        <span>Already Have an Account? <a href="index.html">Login</a></span> 
+    </form> 
+
+    <form id="adminForm" class="admin-form" action="DriverCreate.php" method="POST">
+        <h1>DRIVER REGISTRATION</h1>
+        <label for="adminLicensed">LICENSED_NO.:</label>
+        <input type="text" id="adminLicensed" name="adminLicensed"><br><br>
+        <label for="adminNAME">NAME:</label>
+        <input type="text" id="adminNAME" name="adminNAME"><br><br>
+        <label for="adminUSERNAME">USERNAME</label>
+        <input type="text" id="adminUSERNAME" name="adminUSERNAME"><br><br>
+        <label for="adminPASSWORD">Driver Password:</label>
+        <input type="password" id="adminPASSWORD" name="adminPASSWORD"><br><br>
+        <label for="adminRETYPEPASSWORD">RETYPEPASSWORD:</label>
+        <input type="password" id="adminRETYPEPASSWORD" name="adminRETYPEPASSWORD"><br><br>
+        <button class="submit" name="submit" id="submit" type="submit">SUBMIT</button> <br><br>
+        <span>Already Have an Account? <a href="index.html">Login</a></span>
+    </form>
+</div>
+
+<div class="registration-buttons">
+    <button onclick="showUserForm()">User Registration</button>
+    <button onclick="showAdminForm()">Driver Registration</button>
+  
+
+</div>
+
+<script>
+    function showForm(formToShow, formToHide) {
+        document.getElementById(formToShow).style.display = 'block';
+        document.getElementById(formToHide).style.display = 'none';
+    }
+
+    function showUserForm() {
+        showForm('userForm', 'adminForm');
+    }
+
+    function showAdminForm() {
+        showForm('adminForm', 'userForm');
+    }
+
+    function redirectToNewPage() {
+        window.location.href = 'LTOLogin.php';
+    }
+</script>
+
+</body>
+</html>
