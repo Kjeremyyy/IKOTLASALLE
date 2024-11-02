@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  <title>IKOT LASALLE</title>
+    <title>Log In</title>
+    <style>
+        .admin-form {
+            display: none;
+        }
+
+        #userLogin, #adminForm {
+        transition: opacity 0.5s ease;
+    }
+
+    /* CSS class to hide the form */
+    .hidden-form {
+        display: none;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* CSS class to show the form */
+    .visible-form {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body {
+    background-image: url(images/dlsud.png);
+    background-position: center;
+    background-repeat: no-repeat;   
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(45, 45, 45, 0.5); /* Adjust the tint color and opacity as needed */
+    z-index: -1;
+}
+
+        .header {
+            background-color: rgb(4, 88, 83); /* Navbar background color */
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: rgb(4, 88, 83) !important;
+            font-family: Poppins, sans-serif;
+        }
+
+        .navbar img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        form {
+    position: relative;
+    background: transparent;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    max-width: 400px;
+    width: auto;
+    margin: auto;
+    z-index: 1;
+}
+
+
+    form::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(187, 184, 184, 0.8); /* Adjust the overlay opacity as needed */
+        border-radius: 30px;
+        z-index: -1;
+    }
+
+
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+        display: block;
+        margin-bottom: 8px;
+        color: black;
+        padding: 5px; 
+        }
+
+
+        input {
+    width: 80%;
+    display: block;
+    margin: 0 auto; /* Updated property */
+    padding: 10px 15px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: rgb(224, 251, 242);
+    font-weight: bold;
+}
+
+        button {
+            background-color: rgb(4, 88, 83);
+            color: #fff;
+            font-size: 12px;
+            padding: 10px 15px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+        
+        }
+
+        .button{
+            display: flex;
+            gap:10px;
+
+        }
+
+        button.adminlogin {
+            background-color: #3498db;
+        }
+
+        #createAccountLink {
+            color: #050505;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #createAccountLink a {
+            color: #070707;
+            text-decoration: none;
+        }
+        
+       
+        @media (max-width: 768px) {
+    form {
+        width: auto;
+        max-width: none; /* Remove the maximum width for smaller screens */
+        background-size: cover;
+        background-position: center;
+    }
+}
+       
+    </style>
+</head>
+
+<body>
+
+
+
+  <form id="userLogin" action="Userlogin.php" method="POST">
+        <h1>Log In</h1>
+       
+        <input type="text" id="USERID" name="USERID" placeholder="USERID"><br>
+        
+        <input type="password" id="PASSWORD" name="PASSWORD" placeholder="PASSWORD"><br>
+        <div class="button">
+           
+            <input type="hidden" id="location" name="location" placeholder="Location"><br>
+            <button class="submit" name="submit" id="submit" type="submit">SUBMIT</button>
+            <button class="adminlogin" name="adminlogin" id="adminlogin" type="button" onclick="toggleForms()">Driver Login</button><br><br>
+            <button class="adminpage" name="adminpage" id="adminpage" type="button" onclick="adminPage()">Admin Page</button><br><br>
+        </div>
+        <div id="createAccountLink">
+            Don't have an account? <a href="Createaccount.html" ><strong>Create Account?</strong></a>
+        </div>
+    </form>
+
+<form id="adminForm" class="admin-form" action="Driverlogin.php" method="POST">
+    <h1>Driver Log In</h1>
+    
+    <input type="text" id="adminLicensed" name="adminLicensed" placeholder="LICENSED NO."><br>
+    <input type="password" id="adminPASSWORD" name="adminPASSWORD" placeholder="PASSWORD"><br>
+   <center> <button class="submit" name="submit" id="submit" type="submit">SUBMIT</button>
+    <button class="adminlogin" name="adminlogin" id="adminlogin" type="button" onclick="toggleForms()">User Login</button><br><br>
+    <button class="adminpage" name="adminpage" id="adminpage" type="button" onclick="adminPage()">Admin Page</button><br><br></center>
+    
+    <div id="createAccountLink">
+        Don't have an account? <a href="Createaccount.html" ><strong>Create Account?</strong></a>
+    </div>  
+
+</form>
+
+
+<script>
+    function toggleForms() {
+        var userLoginForm = document.getElementById('userLogin');
+        var adminForm = document.getElementById('adminForm');
+
+        if (userLoginForm.style.display === 'block' || userLoginForm.style.display === '') {
+            userLoginForm.style.display = 'none';
+            adminForm.style.display = 'block';
+        } else {
+            userLoginForm.style.display = 'block';
+            adminForm.style.display = 'none';
+        }
+    }
+
+    function toggleForms() {
+        var userLoginForm = document.getElementById('userLogin');
+        var adminForm = document.getElementById('adminForm');
+
+        if (userLoginForm.classList.contains('visible-form') || userLoginForm.style.display !== 'none') {
+            userLoginForm.classList.remove('visible-form');
+            userLoginForm.classList.add('hidden-form');
+            userLoginForm.style.display = 'none';
+            setTimeout(function () {
+                adminForm.style.display = 'block';
+                adminForm.classList.add('visible-form');
+                adminForm.classList.remove('hidden-form');
+            }, 100); // Adjust the timeout to match your CSS transition
+        } else {
+            adminForm.classList.remove('visible-form');
+            adminForm.classList.add('hidden-form');
+            adminForm.style.display = 'none';
+            setTimeout(function () {
+                userLoginForm.style.display = 'block';
+                userLoginForm.classList.add('visible-form');
+                userLoginForm.classList.remove('hidden-form');
+            }, 100); // Adjust the timeout to match your CSS transition
+        }
+    }
+    
+function adminPage() {
+        window.location.href = "adminlogin.php";
+    }
+ 
+</script>
+
+ <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        // Function to set default value for location input
+        function setDefaultLocation() {
+            var locationInput = document.getElementById('location');
+            var locationParam = getUrlParameter('location');
+            if (locationParam !== '') {
+                locationInput.value = locationParam;
+            } else {
+                // Default value if no location parameter is provided
+                locationInput.value = '';
+            }
+        }
+
+        // Call setDefaultLocation function when the page loads
+        window.onload = setDefaultLocation;
+    </script>
+
+
+
+</body>
+</html>
